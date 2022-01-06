@@ -4,7 +4,7 @@
     // Coi mọi URL của người dùng có dạng: http://localhost/project_mvc/index.php?controller=user&action=index
     // Để tôi xem anh muốn ĐỐI TƯỢNG NÀO (controller là user hay employee, hay unit) và THỰC HIỆN HÀNH ĐỘNG GÌ (index, delete, insert, update)
     // lấy ra controller
-    $controller = isset($_GET['controller']) ? $_GET['controller'] : 'employee';
+    $controller = isset($_GET['controller']) ? $_GET['controller'] : 'user';
     //lấy ra action
     $action     = isset($_GET['action']) ? $_GET['action'] : 'index';
     // Trường hợp đặc biệt  là controller và action ko xuất hiện trên URL, nó mặc định là Hiển thị Danh sách người dùng

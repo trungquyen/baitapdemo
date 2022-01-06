@@ -6,6 +6,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div>
+                        <a class="btn btn-primary" href="#">Thêm người đăng ký</a>
+                    </div>
                     <table class="table">
                         <thead>
                           <tr>
@@ -21,53 +24,23 @@
                           </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            foreach($emps as $row){
+                        ?>
                             <tr>
-                                <th scope="row"><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_id'];
-                                    }                                   
-                                ?></th>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_name'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_sex'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_age'];
-                                    }
-                                    ?></td>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_group'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_reg_date'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_phone'];
-                                    }
-                                ?></td>
-                                <td><a href="employee.php?id=<?php 
-                                    foreach($emps as $row){
-                                        echo $row['bd_id'];
-                                    } 
-                                ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a href="employee.php?id=<?php
-                                    foreach($emps as $row){
-                                        echo $row['bd_id'];
-                                    }  
-                                ?>"><i class="bi bi-trash"></i></a></td>
+                                <th scope="row"><?php echo $row['bd_id'];?></th>
+                                <td><?php echo $row['bd_name']; ?></td>
+                                <td><?php echo $row['bd_sex']; ?></td>
+                                <td><?php echo $row['bd_age']; ?></td>
+                                <td><?php echo $row['bd_group']; ?></td>
+                                <td><?php echo $row['bd_reg_date']; ?></td>
+                                <td><?php echo $row['bd_phone']; ?></td>
+                                <td><a href="index.php?controller=employee&action=edit&id=<?php echo $row['bd_id']; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a href="index.php?controller=employee&action=delete&id=<?php echo $row['bd_id']; ?>"><i class="bi bi-trash"></i></a></td>
                             </tr>
+                        <?php
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </div>

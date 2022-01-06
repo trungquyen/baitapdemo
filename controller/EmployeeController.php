@@ -23,11 +23,17 @@
         }
 
         function delete(){
+            $bdID = $_GET['id'];
+            if (!is_numeric($bdID)){
+                header("Location: index.php?controller=employee&action=index");
+                exit();
+            }
             // Tôi sẽ cần gọi UserModel để truy vấn dữ liệu
             $empModel = new EmployeeModel();
-            $emps = $empModel->DeleteEmps();
+            $result4 = $empModel->DeleteEmps($bdID);
             // Sau khi truy vấn được dữ liệu, tôi sẽ đổ ra UserView/edit.php tương ứng
-            require_once 'view/employee/index.php';
+            // require_once 'view/employee/index.php';
+            header("Location: index.php?controller=employee&action=index");
         }
     }
 

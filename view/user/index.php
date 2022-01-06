@@ -6,6 +6,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div>
+                        <a class="btn btn-primary" href="index.php?controller=employee&action=index">Chi tiết</a>
+                    </div>
                     <table class="table">
                         <thead>
                           <tr>
@@ -16,28 +19,18 @@
                           </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            foreach($users as $row){
+                        ?>
                             <tr>
-                                <th scope="row"><?php
-                                    foreach($users as $row){
-                                        echo $row['bd_id'];
-                                    }                                   
-                                ?></th>
-                                <td><?php
-                                    foreach($users as $row){
-                                        echo $row['bd_name'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($users as $row){
-                                        echo $row['bd_group'];
-                                    }
-                                ?></td>
-                                <td><?php
-                                    foreach($users as $row){
-                                        echo $row['bd_reg_date'];
-                                    }
-                                ?></td>
+                                <th scope="row"><?php echo $row['bd_id'];?></th>
+                                <td><?php echo $row['bd_name']; ?></td>
+                                <td><?php echo $row['bd_group']; ?></td>
+                                <td><?php echo $row['bd_reg_date']; ?></td>
                             </tr>
+                        <?php
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </div>
