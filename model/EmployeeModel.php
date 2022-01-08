@@ -29,20 +29,43 @@
             return $arr_emps;
         }
 
-        public function AddEmps(){
-            // B1. Khởi tạo kết nối
+        public function getBookById($bdID = null) {
             $conn = $this->connectDb();
-            // B2. Định nghĩa và thực hiện truy vấn
-            $sql2 = "INSERT INTO blood_bonor(bd_id, bd_name, bd_sex, bd_age, bd_group, bd_reg_date, bd_phone) VALUES ('', '$bdName', '$bdSex', '$bdAge', '$bdGroup', '$bdRegDate', '$bdPhone')";
-            $result2 = mysqli_query($conn,$sql2);
+            $querySelect = "SELECT * FROM books WHERE id=$id";
+            $results = mysqli_query($conn, $querySelect);
+            $b = [];
+            if (mysqli_num_rows($results) > 0) {
+                $emps = mysqli_fetch_all($results, MYSQLI_ASSOC);
+                $emp = $emps[0];
+            }
+            $this->closeDb($connection);
+    
+            return $emp;
         }
 
-        public function UpdateEmps($bdID = null){
+        public function AddEmps($isEmps = []){
             // B1. Khởi tạo kết nối
             $conn = $this->connectDb();
             // B2. Định nghĩa và thực hiện truy vấn
-            $sql3 = "UPDATE blood_bonor SET bd_name = '$bdName', bd_sex = '$bdSex', bd_age = '$bdAge', bd_group = '$bdGroup', bd_reg_date = '$bdRegDate', bd_phone = '$bdPhone' WHERE bd_id = '$bdID'";
+            $sqlInsert = "INSERT INTO blood_bonor(bd_id, bd_name, bd_sex, bd_age, bd_group, bd_reg_date, bd_phone)
+            VALUES ('NUll', '{$isEmps['bdName']}', '{$isEmps['bdSex']}', '{$isEmps['bdAge']}', '{$isEmps['bdGroup']}', '{$isEmps['bdRegDate']}', '{$isEmps['bdPhone']}')";
+            $isInsert = mysqli_query($conn,$sqlInsert);
+
+            $this->closeDb($conn);
+
+            return $isInsert;
+        }
+
+        public function UpdateEmps($row = []){
+            // B1. Khởi tạo kết nối
+            $conn = $this->connectDb();
+            // B2. Định nghĩa và thực hiện truy vấn
+            $sql3 = "UPDATE blood_bonor SET bd_name = '{$row['bd_name']}', bd_sex = '{$row['bd_sex']}', bd_age = '{$row['bd_age']}', bd_group = '{$row['bd_group']}', bd_reg_date = '{$row['bd_reg_date']}', bd_phone = '{$row['bd_phone']}' WHERE bd_id = '{$row['bd_id']}'";
             $result3 = mysqli_query($conn,$sql3);
+
+            $this->closeDb($conn);
+
+            return $result3;
         }
 
         public function DeleteEmps($bdID = null){

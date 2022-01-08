@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <a class="btn btn-primary" href="#">Thêm người đăng ký</a>
+                        <a class="btn btn-primary" href="index.php?controller=employee&action=add">Thêm người đăng ký</a>
                     </div>
                     <table class="table">
                         <thead>
