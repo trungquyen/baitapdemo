@@ -31,16 +31,18 @@
 
         public function getBookById($bdID = null) {
             $conn = $this->connectDb();
-            $querySelect = "SELECT * FROM books WHERE id=$id";
+            $querySelect = "SELECT bd_name, bd_sex, bd_age, bd_group, bd_reg_date, bd_phone 
+            FROM blood_bonor WHERE bd_id = '$bdID'";
             $results = mysqli_query($conn, $querySelect);
-            $b = [];
+            $isSelect = [];
             if (mysqli_num_rows($results) > 0) {
-                $emps = mysqli_fetch_all($results, MYSQLI_ASSOC);
-                $emp = $emps[0];
+                $isSelect = mysqli_fetch_all($results, MYSQLI_ASSOC);
+                $selEmps = $isSelect[0];
             }
-            $this->closeDb($connection);
+            $this->closeDb($conn);
     
-            return $emp;
+            return $selEmps;
+            // bd_name, bd_sex, bd_age, bd_group, bd_reg_date, bd_phone
         }
 
         public function AddEmps($isEmps = []){
@@ -56,16 +58,18 @@
             return $isInsert;
         }
 
-        public function UpdateEmps($row = []){
+        public function UpdateEmps($isSelect = []){
             // B1. Khởi tạo kết nối
             $conn = $this->connectDb();
             // B2. Định nghĩa và thực hiện truy vấn
-            $sql3 = "UPDATE blood_bonor SET bd_name = '{$row['bd_name']}', bd_sex = '{$row['bd_sex']}', bd_age = '{$row['bd_age']}', bd_group = '{$row['bd_group']}', bd_reg_date = '{$row['bd_reg_date']}', bd_phone = '{$row['bd_phone']}' WHERE bd_id = '{$row['bd_id']}'";
-            $result3 = mysqli_query($conn,$sql3);
+            $sqlUpdate = "UPDATE blood_bonor 
+            SET bd_name = '{$isSelect['bdName']}', bd_sex = '{$isSelect['bdSex']}', bd_age = '{$isSelect['bdAge']}', bd_group = '{$isSelect['bdGroup']}', bd_reg_date = '{$isSelect['bdRegDate']}', bd_phone = '{$isSelect['bdPhone']}' 
+            WHERE bd_id = {$isSelect['bdID']}";
+            $upUpdate = mysqli_query($conn,$sqlUpdate);
 
             $this->closeDb($conn);
 
-            return $result3;
+            return $upUpdate;
         }
 
         public function DeleteEmps($bdID = null){

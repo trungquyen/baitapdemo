@@ -43,15 +43,21 @@
 
         function edit(){
             // Tôi sẽ cần gọi UserModel để truy vấn dữ liệu
-            $id = $_GET['id'];
+            $bdID = $_GET['id'];
             //gọi model để lấy ra đối tượng sách theo id
             $empModel = new EmployeeModel();
             $emps = $empModel->getBookById($bdID);
+            echo 'Hello';
 
             //xử lý submit form, lặp lại thao tác khi submit lúc thêm mới
             $error = '';
-            if (isset($_POST['submit'])) {
-                $name = $_POST['name'];
+            if (isset($_POST['btnUpdate'])) {
+                $bdName = $_POST['bdName'];
+                $bdSex = $_POST['bdSex'];
+                $bdAge = $_POST['bdAge'];
+                $bdGroup = $_POST['bdGroup'];
+                $bdRegDate = $_POST['bdRegDate'];
+                $bdPhone = $_POST['bdPhone'];
                 //check validate dữ liệu
                 if (empty($name)) {
                     $error = "Name không được để trống";
@@ -59,11 +65,15 @@
                 else {
                     //xử lý update dữ liệu vào hệ thống
                     $empModel = new EmployeeModel();
-                    $rowArr = [
-                        'id' => $id,
-                        'name' => $name
+                    $empsArr = [
+                        'bdName' => $bdName,
+                        'bdSex' => $bdSex,
+                        'bdAge' => $bdAge,
+                        'bdGroup' => $bdGroup,
+                        'bdRegDate' => $bdRegDate,
+                        'bdPhone' => $bdPhone
                     ];
-                    $isUpdate = $empModel->UpdateEmps($rowArr);
+                    $isUpdate = $empModel->UpdateEmps($empsArr);
                     // if ($isUpdate) {
                     //     $_SESSION['success'] = "Update bản ghi #$id thành công";
                     // }
@@ -71,12 +81,11 @@
                     //     $_SESSION['error'] = "Update bản ghi #$id thất bại";
                     // }
                     header("Location: index.php?controller=book&action=index");
-                    exit();
                 }
             }
             //truyền ra view
             require_once 'view/employee/edit.php';
-                // Sau khi truy vấn được dữ liệu, tôi sẽ đổ ra UserView/edit.php tương ứng
+            // Sau khi truy vấn được dữ liệu, tôi sẽ đổ ra UserView/edit.php tương ứng
         }
 
         function delete(){

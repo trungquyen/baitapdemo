@@ -6,51 +6,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Sửa thông tin gửi đăng ký</h2>
-                    <form action="process-update-employee.php" method="post">
+                    <h2>Sửa thông tin người đăng ký</h2>
+                    <div style="color: red">
+                        <?php echo $error; ?>
+                    </div>
                 </div>
-                <form action="" method="post">
-                    <!-- <div class="form-group">
-                    <label for="txtbdName">Họ tên</label>
-                    <input type="tel" class="form-control" id="txtbdName" name="bdName" placeholder="Nhập số máy bàn" value="<?php echo $row['sodt_coquan']; ?>">
-                    </div> -->
-                    Họ tên:
-                    <input type="text" name="bdName"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
 
-                    Giới tính:
-                    <input type="text" name="bsSex"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
-
-                    Ngày sinh:
-                    <input type="text" name="bdAge"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
-
-                    Nhóm máu:
-                    <input type="text" name="bdGroup"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
-
-                    Ngày đăng ký:
-                    <input type="text" name="bdRegDate"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
-
-                    Số điện thoại:
-                    <input type="text" name="bdPhone"
-                     value="<?php echo isset($_POST['name']) ? $_POST['name'] : $book['name']?>"
-                    />
-                    <br />
-
-                    <input type="submit" name="submit" value="Update" />
+                <form method="post" action="">
+                    <?php
+                        foreach($emps as $isSelect){
+                    ?>
+                        Họ tên :
+                        <input type="text" name="bdName" 
+                        value="<?php echo $isSelect['bd_name']?>" />
+                        <br />
+                        Giới tính :
+                        <input type="text" name="bdSex" 
+                        value="<?php echo $isSelect['bd_sex']?>" />
+                        <br />
+                        Ngày sinh :
+                        <input type="text" name="bdAge" 
+                        value="<?php echo $isSelect['bd_age']?>" />
+                        <br />
+                        Nhóm máu :
+                        <input type="text" name="bdGroup" 
+                        value="<?php echo $isSelect['bd_group']?>" />
+                        <br />
+                        Ngày đăng ký :
+                        <input type="text" name="bdRegDate" 
+                        value="<?php echo $isSelect['bd_reg_date']?>" />
+                        <br />
+                        SĐT :
+                        <input type="text" name="bdPhone" 
+                        value="<?php echo $isSelect['bd_phone']?>" />
+                        <br />
+                    <?php
+                        }
+                    ?>
+                    <input type="submit" name="btnUpdate" value="Update" />
                 </form>
             </div>
         </div>
